@@ -1,4 +1,6 @@
-﻿namespace APIDemo.models
+﻿using System.Data.SqlTypes;
+
+namespace APIDemo.models
 {
     public class Transaccion
     {

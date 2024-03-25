@@ -1,4 +1,5 @@
 ﻿using APIDemo.models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
@@ -8,6 +9,7 @@ namespace APIDemo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AllowMyOrigin")]
     public class TranController : ControllerBase
     {
         public readonly string con;
@@ -36,7 +38,7 @@ namespace APIDemo.Controllers
                             Transaccion transaccion = new Transaccion
                             {
                                 TransaccionId = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),
-                                Fecha = reader.IsDBNull(1) ? DateTime.MinValue : reader.GetDateTime(1),
+                                Fecha = reader.IsDBNull(1) ? DateTime.MaxValue : reader.GetDateTime(1),
                                 Tipo = reader.IsDBNull(2) ? string.Empty : reader.GetString(2),
                                 CuentaId = reader.IsDBNull(3) ? 0 : reader.GetInt32(3),
                                 CuentaDestino = reader.IsDBNull(4) ? 0 : reader.GetInt32(4),
